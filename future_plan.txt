@@ -1,0 +1,204 @@
+Description
+Radiology reports follow a standard format with key sections that medical specialists must complete when analyzing patient scans. This Build Project focuses on developing a machine learning model that can automatically segment radiology reports into these standard sections, such as title, indication, technique, comparisons, findings, and impression. You'll take on the role of a Machine Learning Engineer, applying natural language processing techniques to build predictive models that extract these sections from unstructured text. You'll learn to represent text as embeddings, visualize data, and implement MLOps to automate training, evaluation and deployment of these machine learning models. These skills—ranging from NLP to MLOps—are in high demand across industries, equipping you with practical experience relevant to entry-level roles in AI-driven healthcare, data science, and machine learning engineering. As automation and AI continue to reshape the workforce, expertise in building, deploying, and optimizing machine learning models is essential for addressing real-world challenges in healthcare and beyond.
+
+What you will learn
+Understand different embedding techniques.
+
+Build traditional and transformer-based NLP models.
+
+Build workflow orchestration pipelines.
+
+Utilize docker to deploy machine learning models.
+
+(1) Kick-off
+You will be introduced to the project and radiology data. You'll learn to perform exploratory data analysis (EDA) on radiology reports using Python, Pandas, and visualization libraries. The session focuses on setting up the environment, understanding radiology report structure, and generating key insights through text-based EDA techniques like frequency analysis and topic modeling.
+
+(2) Intro to Word Embeddings
+This session introduces word embeddings and their role in capturing semantic meaning in NLP. You'll explore traditional embeddings like Word2Vec and contextual ones like BERT. You’ll practice generating and visualizing embeddings and analyze the effectiveness of each technique in handling radiology text.
+
+(3) Traditional ML vs RNN for Field Extraction
+You’ll compare traditional ML models (like Logistic Regression) with RNN-based models for field extraction. The session emphasizes the limitations of traditional approaches with sequential data and walks students through building, training, and evaluating both types of models.
+
+(4) Field Extraction using BERT and Transformers
+This workshop introduces BERT for field extraction tasks and explores why transformer models outperform RNNs. You’ll fine-tune a pre-trained BERT model using Hugging Face and compare its performance with previous approaches. You'll also gain a deeper understanding of attention mechanisms and parallel processing in transformers.
+
+(5) Deploying Models to Hugging Faces Hub and Building UI with StreamLit
+Description: You'll learn how to deploy your fine-tuned BERT model to Hugging Face Hub and build an interactive web UI using Streamlit. The session covers exposing model endpoints with the Hugging Face Inference API and developing an end-to-end user-facing application.
+
+(6) Model Training and Orchestration with Metaflow
+This session focuses on workflow orchestration using Metaflow. You’ll build automated pipelines for training, evaluating, and deploying models. You’ll implement conditional deployment where only better-performing models are updated on the Hugging Face Hub.
+
+(7) Containerizing ML Pipeline with Dockers
+You’ll be ¡introduced to Docker for containerizing ML workflows. You'll learn how to write Dockerfiles, build images, and run containers for the Metaflow pipeline, ensuring portability and reproducibility of your work.
+
+
+
+
+
+Great choice—this project is an excellent way to build hands-on skills in NLP, machine learning, and deployment, especially in a real-world healthcare context. Since you’re doing this independently, I’ll guide you step-by-step, acting as your Machine Learning and LLM mentor. We'll cover both the technical depth and practical implementation in each phase.
+
+✅ Phase-by-Phase Guidance Plan
+(1) Kick-off: EDA on Radiology Reports
+🧠 Goal:
+
+Understand structure, get familiar with the dataset, and extract insights through text analysis.
+
+🛠️ Tools:
+Python, Pandas, Matplotlib, Seaborn, spaCy, nltk, gensim
+📌 Steps:
+Get the Data:
+If a dataset isn’t provided, consider using MIMIC-CXR
+ or synthetic data to simulate radiology reports.
+Explore the Structure:
+Look for repeated sections like:
+Indication
+Technique
+Findings
+Impression
+Use regex to extract and count these headers.
+Text-based EDA:
+Word frequency analysis (by section).
+TF-IDF scores.
+Use topic modeling (LDA or NMF) to identify themes in Findings or Impression.
+Visualizations:
+Bar charts for word frequencies.
+Word clouds.
+PCA/t-SNE to reduce dimensionality and visualize section clusters (after embedding).
+✅ Deliverable:
+
+A Jupyter notebook with EDA, summary statistics, and visual insights about each section.
+
+(2) Intro to Word Embeddings
+🧠 Goal:
+
+Understand and generate word embeddings to represent radiology text semantically.
+
+🔧 Tools:
+gensim, spaCy, transformers (Hugging Face), scikit-learn, UMAP/t-SNE
+📌 Steps:
+Train Word2Vec on your corpus (or use a pre-trained medical one).
+Use BERT (via transformers) to extract contextual embeddings from each sentence/section.
+Compare:
+Fixed embeddings (Word2Vec/GloVe) vs contextual (BERT).
+Visualize:
+UMAP or t-SNE to plot embeddings.
+✅ Deliverable:
+
+A notebook comparing and visualizing traditional vs transformer embeddings.
+
+(3) Traditional ML vs RNN for Field Extraction
+🧠 Goal:
+
+Build baseline models to segment text into standard radiology report fields.
+
+🔧 Tools:
+scikit-learn, Keras, TensorFlow or PyTorch, spaCy
+📌 Steps:
+Data Labeling:
+Break reports into sentence-level chunks and label them with section names.
+Use BIO tagging if needed (for sequence labeling).
+Traditional ML:
+Use TF-IDF + Logistic Regression or Random Forest.
+RNN:
+Sequence classification using LSTM or BiLSTM.
+Compare Performance:
+Use F1-score, precision, recall.
+✅ Deliverable:
+
+Report comparing traditional vs RNN approaches on labeled field extraction task.
+
+(4) Field Extraction using BERT and Transformers
+🧠 Goal:
+
+Fine-tune a BERT model for section classification.
+
+🔧 Tools:
+transformers, datasets, scikit-learn
+📌 Steps:
+Model Choice:
+Start with bert-base-uncased or BioClinicalBERT (for medical text).
+Prepare Dataset:
+Tokenize reports, assign labels to each chunk/sentence.
+Fine-Tuning:
+Fine-tune on your labeled dataset.
+Use Trainer API from Hugging Face.
+Evaluation:
+Compare against previous models.
+Use attention visualization tools to inspect model behavior.
+✅ Deliverable:
+
+A fine-tuned BERT model that segments text into report fields with evaluation metrics.
+
+(5) Deploying to Hugging Face + Streamlit UI
+🧠 Goal:
+
+Make your model accessible and build an interface for users to input reports and see structured output.
+
+🔧 Tools:
+huggingface_hub, Streamlit
+📌 Steps:
+Push model to Hugging Face Hub.
+Streamlit UI:
+Input: Plain-text radiology report.
+Output: Highlighted or section-labeled report.
+Connect to API (if using inference API).
+✅ Deliverable:
+
+Public Hugging Face model + deployed Streamlit app (local or via Streamlit Cloud).
+
+(6) Model Training & Orchestration with Metaflow
+🧠 Goal:
+
+Automate training, evaluation, and conditional deployment.
+
+🔧 Tools:
+Metaflow, Python, Hugging Face Hub
+📌 Steps:
+Create Metaflow pipeline:
+Steps: preprocess → train → evaluate → deploy (conditionally).
+Integrate model tracking (use metrics or compare current vs best).
+Deploy best model only if it outperforms.
+✅ Deliverable:
+
+A reproducible, automated ML pipeline using Metaflow.
+
+(7) Containerize with Docker
+🧠 Goal:
+
+Ensure reproducibility and ease of deployment using Docker.
+
+🔧 Tools:
+Docker, DockerHub
+📌 Steps:
+Write Dockerfile:
+Base image: python:3.10 or Hugging Face container.
+Install deps, add code, set entrypoints.
+
+Build & run:
+
+docker build -t radiology-sectioner .
+docker run -p 8501:8501 radiology-sectioner
+Optional: Push image to DockerHub or use with cloud platforms.
+✅ Deliverable:
+
+Dockerized app of your project.
+
+📦 Project Repository Structure (Suggested)
+radiology-sectioner/
+│
+├── data/                   # Radiology reports dataset
+├── notebooks/              # EDA, modeling notebooks
+├── models/                 # Saved model files
+├── src/
+│   ├── preprocess.py
+│   ├── train.py
+│   ├── evaluate.py
+│   ├── inference.py
+│
+├── streamlit_app/
+│   └── app.py
+├── Dockerfile
+├── metaflow/
+│   └── pipeline.py
+├── requirements.txt
+└── README.md
